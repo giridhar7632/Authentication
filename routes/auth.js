@@ -246,7 +246,7 @@ router.post('/reset-password/:id/:token', async (req, res) => {
 				type: 'error',
 			})
 
-		user.password = newPassword
+		user.password = await hash(newPassword, 10)
 
 		await user.save()
 
